@@ -1,19 +1,30 @@
 # MyOCR
 深度学习文字识别
+
 本项目只是做一个整合，原先的代码分散在三个项目里面，且结构复杂
 
 执行步骤
+
 1.generate_char.py，搜索txt可以替换字符字典
+
 2.convert.py
+
 3.create_lmdb_dataset.py
+
 4.替换lmdb文件
+
 5.替换trian.py里面的中文表character
+
 5.开始训练，train.py 搜索RMSprop可以切换优化器
+
 6.替换demo.py里面的character参数，和train.py里面的保持一致
+
 7.测试模型，demo.py
+
 运行参数在代码文件的最上方
 
 字体存放于fonts/cn目录，免费字体下载https://www.fonts.net.cn/commercial-free/fonts-zh/tag-fangzheng-1.html?previewText=%E6%96%B9%E6%AD%A3%E4%B9%A6%E5%AE%8B
+
 文字样本存放于fonts/cn.txt文件
 
 这个项目了不起的地方还在于把文本识别模块化（特征提取-序列特征提取-特征转换-预测），使每一个模块可以单独优化，从而量化不同模块的贡献。
@@ -26,20 +37,26 @@ https://zhuanlan.zhihu.com/p/356842725?utm_id=0
 https://www.cnblogs.com/skyfsm/category/1123384.html
 
 参考项目
+
 样本生成：https://github.com/AstarLight/CPS-OCR-Engine，https://github.com/Belval/TextRecognitionDataGenerator
+
 数据转换：https://github.com/DaveLogs/TRDG2DTRB https://github.com/clovaai/deep-text-recognition-benchmark
+
 字符训练和识别：https://github.com/clovaai/deep-text-recognition-benchmark
 
 
 简化代码
+
 train.py和demo.py里面的--output_channel从512修改为256，训练时间可以缩短一半
 
 运行环境
+
 windows11，cpu，16G内存，PyCharm
 
 python版本：3.9.2
 
 当前系统安装包列表
+
 absl-py                      1.0.0
 addict                       2.4.0
 arabic-reshaper              2.1.4
