@@ -1,9 +1,13 @@
 # MyOCR
 深度学习文字识别
 
-本项目只是做一个整合，原先的代码分散在三个项目里面，且结构复杂
+本项目只是做一个整合，不是原创，原先的代码分散在三个项目里面，且结构复杂
 
-执行步骤
+项目使用的模型
+
+VGG-BiLSTM-CTC
+
+## 执行步骤
 
 1.generate_char.py，搜索txt可以替换字符字典
 
@@ -21,41 +25,44 @@
 
 7.测试模型，demo.py
 
+## 从零开始参考教程
+https://zhuanlan.zhihu.com/p/400270506
+
+## 各种算法介绍
+https://zhuanlan.zhihu.com/p/356842725?utm_id=0
+https://www.cnblogs.com/skyfsm/category/1123384.html
+
+## 参考项目
+
+样本生成：https://github.com/AstarLight/CPS-OCR-Engine https://github.com/Belval/TextRecognitionDataGenerator
+
+数据转换：https://github.com/DaveLogs/TRDG2DTRB https://github.com/clovaai/deep-text-recognition-benchmark
+
+字符训练和识别：https://github.com/clovaai/deep-text-recognition-benchmark
+
+## 说明
 运行参数在代码文件的最上方
 
 字体存放于fonts/cn目录，免费字体下载https://www.fonts.net.cn/commercial-free/fonts-zh/tag-fangzheng-1.html?previewText=%E6%96%B9%E6%AD%A3%E4%B9%A6%E5%AE%8B
 
 文字样本存放于fonts/cn.txt文件
 
-这个项目了不起的地方还在于把文本识别模块化（特征提取-序列特征提取-特征转换-预测），使每一个模块可以单独优化，从而量化不同模块的贡献。
+这个项目把文本识别模块化（特征提取-序列特征提取-特征转换-预测），使每一个模块可以单独优化，从而量化不同模块的贡献。
 
-从零开始参考教程
-https://zhuanlan.zhihu.com/p/400270506
+使用深度学习进行汉字识别，需要大量的样本用于学习，本质上和模板匹配没有区别，最好还是
 
-各种算法介绍
-https://zhuanlan.zhihu.com/p/356842725?utm_id=0
-https://www.cnblogs.com/skyfsm/category/1123384.html
-
-参考项目
-
-样本生成：https://github.com/AstarLight/CPS-OCR-Engine，https://github.com/Belval/TextRecognitionDataGenerator
-
-数据转换：https://github.com/DaveLogs/TRDG2DTRB https://github.com/clovaai/deep-text-recognition-benchmark
-
-字符训练和识别：https://github.com/clovaai/deep-text-recognition-benchmark
-
-
-简化代码
+## 简化代码
 
 train.py和demo.py里面的--output_channel从512修改为256，训练时间可以缩短一半
+feature_extraction.py里面的第22行和第29行的内容nn.MaxPool2d((2, 1), (2, 1)) 被修改为 nn.MaxPool2d(2, stride=2)，原先的是用于区分i和l字符，汉字用不到，就改了，也能快一点
 
-运行环境
+## 运行环境
 
 windows11，cpu，16G内存，PyCharm
 
 python版本：3.9.2
 
-当前系统安装包列表
+## 当前系统安装包列表
 
 absl-py                      1.0.0
 addict                       2.4.0
